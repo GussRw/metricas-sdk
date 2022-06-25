@@ -1,0 +1,24 @@
+{
+    "name": "plerk/metricas-sdk",
+    "description": "Metricas SDK",
+    "keywords": ["metricas", "sdk"],
+    "homepage": "https://github.com/plerk/metricas-sdk",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "GussRw",
+            "homepage": "https://github.com/gussrw"
+        },
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Plerk\\Metricas\\": "src/"
+        }
+    },
+}

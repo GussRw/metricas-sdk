@@ -42,14 +42,14 @@ class Cardholder extends MetricasObject
         $this->fill($response["cardholder"]);
     }
 
-    static function find($id): Cardholder
+    public static function find($id): Cardholder
     {
         return self::retrieve([
             'id' => $id
         ]);
     }
 
-    static function retrieve($query): Cardholder
+    public static function retrieve($query): Cardholder
     {
         $authentication = Authentication::login();
         $response = ApiResource::get('cardholders', $query, $authentication);

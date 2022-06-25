@@ -29,17 +29,20 @@ class Authentication extends MetricasObject
         return self::$instances[$cls];
     }
 
-    static public function login()
+    public static function login()
     {
         $authentication = Authentication::getInstance();
 
         if (!$authentication->token) {
-            $response = ApiResource::post('auth/login', [
-                "api_client" => [
-                    "api_key" => env("METRICAS_API_KEY"),
-                    "password" => env("METRICAS_PASSWORD")
+            $response = ApiResource::post(
+                'auth/login',
+                [
+                    "api_client" => [
+                        "api_key" => env("METRICAS_API_KEY"),
+                        "password" => env("METRICAS_PASSWORD")
+                    ]
                 ]
-            ]);
+            );
             $authentication->fill($response["client"]);
         }
         return $authentication;

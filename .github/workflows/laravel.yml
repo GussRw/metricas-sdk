@@ -46,6 +46,8 @@ jobs:
       # Code quality
       - name: Show dir
         run: pwd
+      - name: Show files
+        run: ls -la
       - name: Execute Code Sniffer via phpcs
         run: |
           composer global require --dev squizlabs/php_codesniffer

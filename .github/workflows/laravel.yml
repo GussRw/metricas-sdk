@@ -46,8 +46,9 @@ jobs:
       # Code quality
       - name: Execute Code Sniffer via phpcs
         run: |
-          composer require --dev squizlabs/php_codesniffer
-          vendor/bin/phpcs --standard=PSR12 --extensions=php --report=summary src
+          composer global require --dev squizlabs/php_codesniffer
+          export PATH="/home/$USER/.config/composer/vendor/bin:$PATH"
+          phpcs --standard=PSR12 --extensions=php --report=summary src
 
       #- name: Execute Code Static Analysis (PHP Stan + Larastan)
       #  run: |

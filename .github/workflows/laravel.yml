@@ -44,6 +44,8 @@ jobs:
           path: vendor
           key: ${{ runner.OS }}-build-${{ hashFiles('**/composer.lock') }}
       # Code quality
+      - name: Show dir
+        run: pwd
       - name: Execute Code Sniffer via phpcs
         run: |
           composer global require --dev squizlabs/php_codesniffer

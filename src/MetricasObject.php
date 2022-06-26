@@ -7,15 +7,18 @@ use ReflectionProperty;
 
 abstract class MetricasObject
 {
-    public function save()
+    public function __construct($data = [])
     {
+        $this->fill($data);
     }
 
     public static function create($data): static
     {
         $object = new static();
         $object->fill($data);
-        $object->save();
+        if (method_exists(static::class, "save")) {
+            $object->save();
+        }
         return $object;
     }
 

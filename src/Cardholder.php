@@ -30,11 +30,6 @@ class Cardholder extends MetricasObject
     public $net_monthly_income;
     public $observations;
 
-    public function __construct($data = [])
-    {
-        $this->fill($data);
-    }
-
     public function save()
     {
         $authentication = Authentication::login();

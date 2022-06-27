@@ -111,10 +111,25 @@ class Card extends MetricasObject
         return $this;
     }
 
-    public function loadPOSPin(string $pin)
+    public function loadPOSPin()
     {
         $response = ApiResource::get('cards/pin/pos', [
             "card_number" => $this->id
+        ], $this->authentication);
+        $this->fill($response['card']);
+
+        return $this;
+    }
+
+
+    public function updateATMPin(string $old_pin, string $new_pin)
+    {
+        $response = ApiResource::put('cards/pin', [
+            "card_number" => $this->id,
+            "old_pin" => Client::encryptForPOST($old_pin),
+            "new_pin" => Client::encryptForPOST($new_pin),
+            "latitude" => 12.65343,
+            "longitude" => -134.87536
         ], $this->authentication);
         $this->fill($response['card']);
 

@@ -100,7 +100,7 @@ class Card extends MetricasObject
 
     public function validateATMPin(string $pin)
     {
-        $response = ApiResource::get('cards/authenticate', [
+        $response = ApiResource::get('cards/pin/validate', [
             "card_number" => $this->id,
             "pin" => Client::encryptForURL($pin),
             "latitude" => 12.65343,

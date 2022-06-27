@@ -18,6 +18,7 @@ class Card extends MetricasObject
     public float $available;
     public array $movements = [];
     public bool $validated = false;
+    public string $pin;
 
     public static function find($card_number): Card
     {
@@ -96,6 +97,7 @@ class Card extends MetricasObject
 
         return $this;
     }
+
     public function setATMPin(string $pin)
     {
         $response = ApiResource::post('cards/pin', [
@@ -103,6 +105,16 @@ class Card extends MetricasObject
             "pin" => Client::encryptForPOST($pin),
             "latitude" => 12.65343,
             "longitude" => -134.87536
+        ], $this->authentication);
+        $this->fill($response['card']);
+
+        return $this;
+    }
+
+    public function laodPOSPin(string $pin)
+    {
+        $response = ApiResource::get('cards/pin/pos', [
+            "card_number" => $this->id
         ], $this->authentication);
         $this->fill($response['card']);
 

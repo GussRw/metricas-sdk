@@ -17,6 +17,7 @@ class Card extends MetricasObject
     public string $card_number;
     public float $available;
     public array $movements = [];
+    public bool $validated = false;
 
     public static function find($card_number): Card
     {
@@ -81,6 +82,18 @@ class Card extends MetricasObject
 
         $this->available = $response['available'] ?? null;
         $this->movements = $with_movements && isset($response['movements']) ? $response['movements'] : [];
+
+        return $this;
+    }
+
+    public function authenticate(string $authentication_info)
+    {
+        $response = ApiResource::get('cards/authenticate', [
+            "card_number" => $this->id,
+            "authentication_info" => $authentication_info
+        ], $this->authentication);
+
+        $this->validated = $response['validated'];
 
         return $this;
     }

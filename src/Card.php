@@ -111,7 +111,7 @@ class Card extends MetricasObject
         return $this;
     }
 
-    public function laodPOSPin(string $pin)
+    public function loadPOSPin(string $pin)
     {
         $response = ApiResource::get('cards/pin/pos', [
             "card_number" => $this->id

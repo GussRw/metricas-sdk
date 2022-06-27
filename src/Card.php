@@ -100,7 +100,7 @@ class Card extends MetricasObject
     {
         $response = ApiResource::post('cards/pin', [
             "card_number" => $this->id,
-            "pin" => $pin,
+            "pin" => Client::encryptForPOST($pin),
             "latitude" => 12.65343,
             "longitude" => -134.87536
         ], $this->authentication);

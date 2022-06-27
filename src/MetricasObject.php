@@ -7,8 +7,15 @@ use ReflectionProperty;
 
 abstract class MetricasObject
 {
+    protected $requires_auth = false;
+    protected ?Authentication $authentication = null;
+
     public function __construct($data = [])
     {
+        if ($this->requires_auth) {
+            $this->authentication = Authentication::login();
+        }
+
         $this->fill($data);
     }
 

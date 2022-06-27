@@ -16,10 +16,15 @@ class Client extends MetricasObject
         return $response['system']['public_key'];
     }
 
-    public static function encryptForGET($data)
+    public static function encryptForURL($data)
     {
         $encripted = self::encryptForPOST($data);
         return rtrim(strtr($encripted, '+/', '-_'), '=');
+    }
+
+    public static function base64URLDecode($encrypted)
+    {
+        return strtr($encrypted, '-_', '+/') . str_repeat('=', 3 - ( 3 + strlen($encrypted)) % 4);
     }
 
     public static function encryptForPOST($data)

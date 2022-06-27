@@ -75,9 +75,7 @@ class Card extends MetricasObject
     {
         $response = ApiResource::get('cards/balance', [
             "card_number" => Client::encryptForPOST($this->card_number),
-            "movements" => $with_movements,
-            "latitude" => 12.65343,
-            "longitude" => -134.87536
+            "movements" => var_export($with_movements, 1)
         ], $this->authentication);
         $this->fill($response['card']);
 

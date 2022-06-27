@@ -7,16 +7,9 @@ class Authentication extends MetricasObject
     private static $instances = [];
 
     public $id;
-    public $status_id;
-    public $client_id;
-    public $jti;
     public $token;
     public $alias;
     public $name;
-    public $description;
-    public $created_at;
-    public $updated_at;
-    public $public_key;
 
 
     private static function getInstance(): Authentication

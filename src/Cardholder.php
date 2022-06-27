@@ -4,6 +4,8 @@ namespace Plerk\Metricas;
 
 class Cardholder extends MetricasObject
 {
+    protected $requires_auth = true;
+
     public $id;
     public $first_name;
     public $second_name;
@@ -32,8 +34,7 @@ class Cardholder extends MetricasObject
 
     public function save()
     {
-        $authentication = Authentication::login();
-        $response = ApiResource::post('cardholders', $this->toArray(), $authentication);
+        $response = ApiResource::post('cardholders', $this->toArray(), $this->authentication);
         $this->fill($response["cardholder"]);
     }
 

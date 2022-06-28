@@ -19,6 +19,8 @@ class Card extends MetricasObject
     public array $movements = [];
     public bool $validated = false;
     public string $pin;
+    public Operation $operation;
+    public Account $account;
 
     public static function find($card_number): Card
     {
@@ -189,6 +191,23 @@ class Card extends MetricasObject
         ], $this->authentication);
 
         $this->fill($response['card']);
+
+        return $this;
+    }
+
+    public function applyPurchase(float $amount, string $charge_code): Card
+    {
+        $response = ApiResource::post('cards/purchase', [
+            "card_number" => $this->id,
+            "amount" => $amount,
+            "charge_code" => $charge_code,
+            "latitude" => 12.65343,
+            "longitude" => -134.87536
+        ], $this->authentication);
+
+        $this->fill($response['card']);
+        $this->operation = new Operation($response['operation']);
+        $this->account = new Account($response['account']);
 
         return $this;
     }

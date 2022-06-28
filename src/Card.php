@@ -183,6 +183,7 @@ class Card extends MetricasObject
         $response = ApiResource::post('cards/withdrawal', [
             "card_number" => $this->id,
             "amount" => $amount,
+            "pin" => $pin ? Client::encryptForPOST($pin) : null,
             "latitude" => 12.65343,
             "longitude" => -134.87536
         ], $this->authentication);

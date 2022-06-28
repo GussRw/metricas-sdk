@@ -33,17 +33,16 @@ class Card extends MetricasObject
         ], $authentication);
 
         $card = new Card($response['card']);
-        $card->card_number = $card_number;
         $card->account = new Account($response['account']);
         $card->cardholder = new Cardholder($response['cardholder']);
 
         return $card;
     }
 
-    public function assignToCardHolder(Cardholder $cardholder, $data)
+    public function assignToCardHolder(Cardholder $cardholder, $card_number, $data)
     {
         $response = ApiResource::put('cards', [
-            "card_number" => Client::encryptForPOST($this->card_number),
+            "card_number" => Client::encryptForPOST($card_number),
             "cardholder_id" => $cardholder->id,
             "document_type" => $data["document_type"] ?? null,
             "document_number" => $data["document_number"] ?? null,
@@ -62,7 +61,7 @@ class Card extends MetricasObject
     public function activate()
     {
         $response = ApiResource::post('cards/activate', [
-            "card_number" => Client::encryptForPOST($this->card_number),
+            "card_number" => $this->id,
             "latitude" => 12.65343,
             "longitude" => -134.87536
         ], $this->authentication);
@@ -76,7 +75,7 @@ class Card extends MetricasObject
     public function setStatus(string $status)
     {
         $response = ApiResource::put('cards/status', [
-            "card_number" => Client::encryptForPOST($this->card_number),
+            "card_number" => $this->id,
             "status" => $status,
             "latitude" => 12.65343,
             "longitude" => -134.87536
@@ -91,7 +90,7 @@ class Card extends MetricasObject
     public function loadBalance(bool $with_movements = false)
     {
         $response = ApiResource::get('cards/balance', [
-            "card_number" => Client::encryptForPOST($this->card_number),
+            "card_number" => $this->id,
             "movements" => var_export($with_movements, 1)
         ], $this->authentication);
         $this->fill($response['card']);
@@ -237,6 +236,22 @@ class Card extends MetricasObject
         $this->fill($response['card']);
         $this->operation = new Operation($response['operation']);
         $this->account = new Account($response['account']);
+
+        return $this;
+    }
+
+
+    public function loadMovements(string $initial_date, string $end_date)
+    {
+        $response = ApiResource::get('cards/movements', [
+            "card_number" => $this->id,
+            "initial_date" => $initial_date,
+            "end_date" => $end_date,
+        ], $this->authentication);
+
+        $this->fill($response['card']);
+        $this->account = new Account($response['account']);
+        $this->movements = isset($response['movements']) ? $response['movements'] : [];
 
         return $this;
     }

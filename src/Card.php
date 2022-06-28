@@ -11,7 +11,7 @@ class Card extends MetricasObject
     public const TEMPORARY_INACTIVE = "TEMPORARY_INACTIVE";
     public const ACTIVE = "ACTIVE";
     public const NOT_ASSIGNED = "NOT_ASSIGNED";
-    public const NEED_ACTVATION = "NEED_ACTVATION";
+    public const NEED_ACTIVATION = "NEED_ACTIVATION";
     public const VIRTUAL = "VIRTUAL";
     public const PHYSICAL = "PHYSICAL";
 

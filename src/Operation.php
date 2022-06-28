@@ -9,5 +9,4 @@ class Operation extends MetricasObject
     public float $amount;
     public string $charge_code;
     public string $charge_description;
-
 }

@@ -14,7 +14,7 @@ class MetricasCatalog extends MetricasObject
 
     public static function all(): array
     {
-        $catalog = new static;
+        $catalog = new static();
         $authentication = Authentication::login();
         $response = ApiResource::get($catalog->uri, [], $authentication);
         return $response[$catalog->key];

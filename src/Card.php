@@ -32,9 +32,15 @@ class Card extends MetricasObject
 
     public static function find($card_number): Card
     {
+        $card = self::findById(Client::encryptForURL($card_number));
+        return $card;
+    }
+
+    public static function findById($card_id): Card
+    {
         $authentication = Authentication::login();
         $response = ApiResource::get('cards/info', [
-            'card_number' => Client::encryptForURL($card_number)
+            'card_number' => $card_id
         ], $authentication);
 
         $card = new Card($response['card']);

@@ -7,6 +7,7 @@ class Cardholder extends MetricasObject
     protected $requires_auth = true;
 
     public $id;
+    public $name;
     public $first_name;
     public $second_name;
     public $surname;
@@ -14,6 +15,7 @@ class Cardholder extends MetricasObject
     public $rfc;
     public $curp;
     public $email;
+    public $phone;
     public $primary_phone;
     public $mobile_phone;
     public $street;
@@ -31,6 +33,7 @@ class Cardholder extends MetricasObject
     public $gross_monthly_income;
     public $net_monthly_income;
     public $observations;
+    public $document;
 
     public function save()
     {

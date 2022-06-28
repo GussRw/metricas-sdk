@@ -45,7 +45,7 @@ abstract class MetricasObject
             $props,
             array_map(
                 function ($prop) {
-                    return $this->$prop;
+                    return $this->$prop ?? null;
                 },
                 $props
             )

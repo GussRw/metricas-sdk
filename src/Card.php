@@ -5,12 +5,15 @@ namespace Plerk\Metricas;
 class Card extends MetricasObject
 {
     use PhysicalCard, VirtualCard;
+
     protected $requires_auth = true;
 
     public const TEMPORARY_INACTIVE = "TEMPORARY_INACTIVE";
     public const ACTIVE = "ACTIVE";
     public const NOT_ASSIGNED = "NOT_ASSIGNED";
     public const NEED_ACTVATION = "NEED_ACTVATION";
+    public const VIRTUAL = "VIRTUAL";
+    public const PHYSICAL = "PHYSICAL";
 
     public string $id;
     public string $masked_card_number;

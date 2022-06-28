@@ -149,7 +149,7 @@ class Card extends MetricasObject
         return $this;
     }
 
-    public function makeDisbursement(float $amount)
+    public function makeDisbursement(float $amount): void
     {
         $response = ApiResource::post('cards/disbursement', [
             "card_number" => $this->id,
@@ -157,10 +157,7 @@ class Card extends MetricasObject
             "latitude" => 12.65343,
             "longitude" => -134.87536
         ], $this->authentication);
-        $this->validated = $response['validated'];
 
         return $this;
     }
-
-
 }

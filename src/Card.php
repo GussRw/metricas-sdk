@@ -17,6 +17,8 @@ class Card extends MetricasObject
     public string $card_number;
     public float $available;
     public array $movements = [];
+    public bool $validated = false;
+    public string $pin;
 
     public static function find($card_number): Card
     {
@@ -81,6 +83,80 @@ class Card extends MetricasObject
 
         $this->available = $response['available'] ?? null;
         $this->movements = $with_movements && isset($response['movements']) ? $response['movements'] : [];
+
+        return $this;
+    }
+
+    public function authenticate(string $authentication_info)
+    {
+        $response = ApiResource::get('cards/authenticate', [
+            "card_number" => $this->id,
+            "authentication_info" => $authentication_info
+        ], $this->authentication);
+        $this->validated = $response['validated'];
+
+        return $this;
+    }
+
+    public function setATMPin(string $pin)
+    {
+        $response = ApiResource::post('cards/pin', [
+            "card_number" => $this->id,
+            "pin" => Client::encryptForPOST($pin),
+            "latitude" => 12.65343,
+            "longitude" => -134.87536
+        ], $this->authentication);
+        $this->fill($response['card']);
+
+        return $this;
+    }
+
+    public function loadPOSPin()
+    {
+        $response = ApiResource::get('cards/pin/pos', [
+            "card_number" => $this->id
+        ], $this->authentication);
+        $this->fill($response['card']);
+
+        return $this;
+    }
+
+
+    public function updateATMPin(string $old_pin, string $new_pin)
+    {
+        $response = ApiResource::put('cards/pin', [
+            "card_number" => $this->id,
+            "old_pin" => Client::encryptForPOST($old_pin),
+            "new_pin" => Client::encryptForPOST($new_pin),
+            "latitude" => 12.65343,
+            "longitude" => -134.87536
+        ], $this->authentication);
+        $this->fill($response['card']);
+
+        return $this;
+    }
+
+    public function validateATMPin(string $pin)
+    {
+        $response = ApiResource::get('cards/pin/validate', [
+            "card_number" => $this->id,
+            "pin" => Client::encryptForURL($pin),
+            "latitude" => 12.65343,
+            "longitude" => -134.87536
+        ], $this->authentication);
+        $this->validated = $response['validated'];
+
+        return $this;
+    }
+
+    public function makeDisbursement(float $amount): void
+    {
+        $response = ApiResource::post('cards/disbursement', [
+            "card_number" => $this->id,
+            "amount" => $amount,
+            "latitude" => 12.65343,
+            "longitude" => -134.87536
+        ], $this->authentication);
 
         return $this;
     }

@@ -19,7 +19,7 @@ class ApiResource
 
         $this->client = new Client([
             'base_uri' => $base_uri,
-            'timeout' => 2.0,
+            'timeout' => 30.0,
         ]);
     }
 

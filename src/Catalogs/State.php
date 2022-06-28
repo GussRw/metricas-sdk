@@ -5,6 +5,6 @@ namespace Plerk\Metricas\Catalogs;
 
 class State extends MetricasCatalog
 {
-    protected  $uri = "catalogs/states";
+    protected  $uri = "catalogs/state";
     protected  $key = "states";
 }

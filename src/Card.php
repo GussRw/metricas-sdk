@@ -177,4 +177,18 @@ class Card extends MetricasObject
 
         return $this;
     }
+
+    public function makeWithdrawal(float $amount, string $pin = null): Card
+    {
+        $response = ApiResource::post('cards/withdrawal', [
+            "card_number" => $this->id,
+            "amount" => $amount,
+            "latitude" => 12.65343,
+            "longitude" => -134.87536
+        ], $this->authentication);
+
+        $this->fill($response['card']);
+
+        return $this;
+    }
 }

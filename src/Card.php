@@ -21,6 +21,7 @@ class Card extends MetricasObject
     public string $pin;
     public Operation $operation;
     public Account $account;
+    public Cardholder $cardholder;
 
     public static function find($card_number): Card
     {
@@ -28,8 +29,11 @@ class Card extends MetricasObject
         $response = ApiResource::get('cards/info', [
             'card_number' => Client::encryptForURL($card_number)
         ], $authentication);
+
         $card = new Card($response['card']);
         $card->card_number = $card_number;
+        $card->account = new Account($response['account']);
+        $card->cardholder = new Cardholder($response['cardholder']);
 
         return $card;
     }
@@ -45,7 +49,10 @@ class Card extends MetricasObject
             "latitude" => 12.65343,
             "longitude" => -134.87536
         ], $this->authentication);
+
         $this->fill($response['card']);
+        $this->account = new Account($response['account']);
+        $this->cardholder = new Cardholder($response['cardholder']);
 
         return $this;
     }
@@ -57,7 +64,9 @@ class Card extends MetricasObject
             "latitude" => 12.65343,
             "longitude" => -134.87536
         ], $this->authentication);
+
         $this->fill($response['card']);
+        $this->account = new Account($response['account']);
 
         return $this;
     }
@@ -70,7 +79,9 @@ class Card extends MetricasObject
             "latitude" => 12.65343,
             "longitude" => -134.87536
         ], $this->authentication);
+
         $this->fill($response['card']);
+        $this->account = new Account($response['account']);
 
         return $this;
     }
@@ -85,6 +96,7 @@ class Card extends MetricasObject
 
         $this->available = $response['available'] ?? null;
         $this->movements = $with_movements && isset($response['movements']) ? $response['movements'] : [];
+        $this->account = new Account($response['account']);
 
         return $this;
     }
@@ -108,7 +120,10 @@ class Card extends MetricasObject
             "latitude" => 12.65343,
             "longitude" => -134.87536
         ], $this->authentication);
+
         $this->fill($response['card']);
+        $this->operation = new Operation($response['operation']);
+        $this->account = new Account($response['account']);
 
         return $this;
     }
@@ -118,7 +133,9 @@ class Card extends MetricasObject
         $response = ApiResource::get('cards/pin/pos', [
             "card_number" => $this->id
         ], $this->authentication);
+
         $this->fill($response['card']);
+        $this->account = new Account($response['account']);
 
         return $this;
     }
@@ -133,7 +150,10 @@ class Card extends MetricasObject
             "latitude" => 12.65343,
             "longitude" => -134.87536
         ], $this->authentication);
+
         $this->fill($response['card']);
+        $this->operation = new Operation($response['operation']);
+        $this->account = new Account($response['account']);
 
         return $this;
     }
@@ -161,6 +181,8 @@ class Card extends MetricasObject
         ], $this->authentication);
 
         $this->fill($response['card']);
+        $this->operation = new Operation($response['operation']);
+        $this->account = new Account($response['account']);
 
         return $this;
     }
@@ -176,6 +198,8 @@ class Card extends MetricasObject
         ], $this->authentication);
 
         $this->fill($response['card']);
+        $this->operation = new Operation($response['operation']);
+        $this->account = new Account($response['account']);
 
         return $this;
     }
@@ -191,6 +215,8 @@ class Card extends MetricasObject
         ], $this->authentication);
 
         $this->fill($response['card']);
+        $this->operation = new Operation($response['operation']);
+        $this->account = new Account($response['account']);
 
         return $this;
     }

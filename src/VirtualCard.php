@@ -23,6 +23,5 @@ trait VirtualCard
         $this->fill($response["card"]);
         $this->cardholder = new Cardholder($response['cardholder']);
         $this->account = new Account($response['account']);
-
     }
 }

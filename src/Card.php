@@ -4,7 +4,8 @@ namespace Plerk\Metricas;
 
 class Card extends MetricasObject
 {
-    use PhysicalCard, VirtualCard;
+    use PhysicalCard;
+    use VirtualCard;
 
     protected $requires_auth = true;
 

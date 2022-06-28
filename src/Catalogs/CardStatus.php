@@ -3,7 +3,7 @@
 namespace Plerk\Metricas\Catalogs;
 
 
-class Status extends MetricasCatalog
+class CardStatus extends MetricasCatalog
 {
     protected  $uri = "catalogs/card_status";
     protected  $key = "card_status";

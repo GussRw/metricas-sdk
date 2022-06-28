@@ -2,8 +2,9 @@
 
 namespace Plerk\Metricas;
 
-abstract class Card extends MetricasObject
+class Card extends MetricasObject
 {
+    use PhysicalCard, VirtualCard;
     protected $requires_auth = true;
 
     public const TEMPORARY_INACTIVE = "TEMPORARY_INACTIVE";
@@ -25,14 +26,14 @@ abstract class Card extends MetricasObject
     public Account $account;
     public Cardholder $cardholder;
 
-    public static function find($card_number): static
+    public static function find($card_number): Card
     {
         $authentication = Authentication::login();
         $response = ApiResource::get('cards/info', [
             'card_number' => Client::encryptForURL($card_number)
         ], $authentication);
 
-        $card = new static($response['card']);
+        $card = new Card($response['card']);
         $card->account = new Account($response['account']);
         $card->cardholder = new Cardholder($response['cardholder']);
 

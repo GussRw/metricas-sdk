@@ -2,7 +2,7 @@
 
 namespace Plerk\Metricas;
 
-class PhysicalCard extends Card
+trait PhysicalCard
 {
     public function assignToCardHolder(Cardholder $cardholder, $card_number, $data)
     {
@@ -65,11 +65,10 @@ class PhysicalCard extends Card
             "latitude" => 12.65343,
             "longitude" => -134.87536
         ], $this->authentication);
-        $this->validated = $response['validated'];
+        $this->validated = (bool) filter_var($response['validated'], FILTER_VALIDATE_BOOLEAN);
 
         return $this;
     }
-
 
 
     public function loadPOSPin()

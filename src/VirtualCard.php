@@ -2,7 +2,7 @@
 
 namespace Plerk\Metricas;
 
-class VirtualCard extends Card
+trait VirtualCard
 {
     public string $product;
     public string $cardholder_id;
@@ -10,7 +10,7 @@ class VirtualCard extends Card
     public string $document_number;
     public string $observations;
 
-    public function save()
+    public function createVirtualCard()
     {
         $response = ApiResource::post('cards/virtual', [
             "product" => $this->product,

@@ -8,14 +8,15 @@ use Plerk\Metricas\MetricasObject;
 
 class MetricasCatalog extends MetricasObject
 {
-    protected static $uri;
-    protected static $key;
+    protected $uri;
+    protected $key;
 
 
     public static function all(): array
     {
+        $catalog = new static;
         $authentication = Authentication::login();
-        $response = ApiResource::get(static::$uri, [], $authentication);
-        return $response[static::$key];
+        $response = ApiResource::get($catalog->uri, [], $authentication);
+        return $response[$catalog->key];
     }
 }

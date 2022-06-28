@@ -162,4 +162,19 @@ class Card extends MetricasObject
 
         return $this;
     }
+
+    public function makePayment(float $amount, string $payment_code): Card
+    {
+        $response = ApiResource::post('cards/payment', [
+            "card_number" => $this->id,
+            "amount" => $amount,
+            "payment_code" => $payment_code,
+            "latitude" => 12.65343,
+            "longitude" => -134.87536
+        ], $this->authentication);
+
+        $this->fill($response['card']);
+
+        return $this;
+    }
 }

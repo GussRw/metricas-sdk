@@ -195,12 +195,13 @@ class Card extends MetricasObject
         return $this;
     }
 
-    public function applyPurchase(float $amount, string $charge_code): Card
+    public function applyPurchase(float $amount, string $charge_code, string $pin = null): Card
     {
         $response = ApiResource::post('cards/purchase', [
             "card_number" => $this->id,
             "amount" => $amount,
             "charge_code" => $charge_code,
+            "pin" => $pin ? Client::encryptForPOST($pin) : null,
             "latitude" => 12.65343,
             "longitude" => -134.87536
         ], $this->authentication);

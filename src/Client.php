@@ -16,7 +16,7 @@ class Client extends MetricasObject
         return $response['system']['public_key'];
     }
 
-    private static function addPublicKey($public_key)
+    public static function addPublicKey($public_key)
     {
         $authentication = Authentication::login();
         $response = ApiResource::post('clients/api_key/public_key', [

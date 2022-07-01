@@ -97,4 +97,10 @@ class ApiResource
             return $response;
         }
     }
+
+    public static function returnOriginalResponse(): bool
+    {
+        $response_key = getenv('METRICAS_RESPONSE', 'data');
+        return ($response_key === null || strtolower($response_key === null) != 'null');
+    }
 }

@@ -18,7 +18,7 @@ class MetricasCatalog extends MetricasObject
         $authentication = Authentication::login();
         $response = ApiResource::get($catalog->uri, [], $authentication);
 
-        if (getenv('METRICAS_RESPONSE', 'data') === null) {
+        if (ApiResource::returnOriginalResponse()) {
             return $response;
         }
 

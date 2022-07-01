@@ -37,13 +37,11 @@ class Authentication extends MetricasObject
                 ]
             );
 
-            if (env('METRICAS_RESPONSE', 'data') === null){
+            if (env('METRICAS_RESPONSE', 'data') === null) {
                 $authentication->fill($response["data"]["client"]);
-
-            }else{
+            } else {
                 $authentication->fill($response["client"]);
             }
-
         }
         return $authentication;
     }

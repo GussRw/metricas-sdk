@@ -30,13 +30,13 @@ class Card extends MetricasObject
     public Account $account;
     public Cardholder $cardholder;
 
-    public static function find($card_number): Card
+    public static function find($card_number): Card|array
     {
         $card = self::findById(Client::encryptForURL($card_number));
         return $card;
     }
 
-    public static function findById($card_id): Card
+    public static function findById($card_id): Card|array
     {
         $authentication = Authentication::login();
         $response = ApiResource::get('cards/info', [
@@ -129,7 +129,7 @@ class Card extends MetricasObject
         return $this;
     }
 
-    public function makeDisbursement(float $amount): Card
+    public function makeDisbursement(float $amount): Card|array
     {
         $response = ApiResource::post('cards/disbursement', [
             "card_number" => $this->id,
@@ -149,7 +149,7 @@ class Card extends MetricasObject
         return $this;
     }
 
-    public function makePayment(float $amount, string $payment_code): Card
+    public function makePayment(float $amount, string $payment_code): Card|array
     {
         $response = ApiResource::post('cards/payment', [
             "card_number" => $this->id,
@@ -170,7 +170,7 @@ class Card extends MetricasObject
         return $this;
     }
 
-    public function makeWithdrawal(float $amount, string $pin = null): Card
+    public function makeWithdrawal(float $amount, string $pin = null): Card|array
     {
         $response = ApiResource::post('cards/withdrawal', [
             "card_number" => $this->id,
@@ -191,7 +191,7 @@ class Card extends MetricasObject
         return $this;
     }
 
-    public function applyPurchase(float $amount, string $charge_code, string $pin = null): Card
+    public function applyPurchase(float $amount, string $charge_code, string $pin = null): Card|array
     {
         $response = ApiResource::post('cards/purchase', [
             "card_number" => $this->id,

@@ -16,7 +16,7 @@ class Client extends MetricasObject
 
 
         if (getenv('METRICAS_RESPONSE', 'data') === null) {
-            return $response;
+            return $response['data']['system']['public_key'];
         }
 
 

@@ -91,7 +91,7 @@ class ApiResource
     {
         $response = json_decode($response->getBody()->getContents(), true);
 
-        if (env('METRICAS_RESPONSE', 'data') == 'data' && isset($response[env('METRICAS_RESPONSE', 'data')])) {
+        if (env('METRICAS_RESPONSE', 'data') && isset($response[env('METRICAS_RESPONSE', 'data')])) {
             return $response[env('METRICAS_RESPONSE', 'data')];
         } else {
             return $response;

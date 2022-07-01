@@ -48,12 +48,7 @@ class ApiResource
             ]
         );
 
-        $response = json_decode($response->getBody()->getContents(), true);
-        if (isset($response["data"])) {
-            return $response["data"];
-        } else {
-            return $response;
-        }
+        return $apiResource->processResponse($response);
     }
 
     public static function put($uri, $json, Authentication $authentication = null)
@@ -70,13 +65,7 @@ class ApiResource
                 'json' => $json
             ]
         );
-
-        $response = json_decode($response->getBody()->getContents(), true);
-        if (isset($response["data"])) {
-            return $response["data"];
-        } else {
-            return $response;
-        }
+        return $apiResource->processResponse($response);
     }
 
     public static function get($uri, $query, $authentication)
@@ -95,9 +84,15 @@ class ApiResource
             ]
         );
 
+        return $apiResource->processResponse($response);
+    }
+
+    private function processResponse($response)
+    {
         $response = json_decode($response->getBody()->getContents(), true);
-        if (isset($response["data"])) {
-            return $response["data"];
+
+        if (env('METRICAS_RESPONSE', 'data') == 'data' && isset($response[env('METRICAS_RESPONSE', 'data')])) {
+            return $response[env('METRICAS_RESPONSE', 'data')];
         } else {
             return $response;
         }

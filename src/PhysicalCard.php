@@ -16,6 +16,10 @@ trait PhysicalCard
             "longitude" => -134.87536
         ], $this->authentication);
 
+        if (env('METRICAS_RESPONSE', 'data') === null) {
+            return $response;
+        }
+
         $this->fill($response['card']);
         $this->account = new Account($response['account']);
         $this->cardholder = new Cardholder($response['cardholder']);
@@ -32,6 +36,10 @@ trait PhysicalCard
             "latitude" => 12.65343,
             "longitude" => -134.87536
         ], $this->authentication);
+
+        if (env('METRICAS_RESPONSE', 'data') === null) {
+            return $response;
+        }
 
         $this->fill($response['card']);
         $this->operation = new Operation($response['operation']);
@@ -50,6 +58,10 @@ trait PhysicalCard
             "longitude" => -134.87536
         ], $this->authentication);
 
+        if (env('METRICAS_RESPONSE', 'data') === null) {
+            return $response;
+        }
+
         $this->fill($response['card']);
         $this->operation = new Operation($response['operation']);
         $this->account = new Account($response['account']);
@@ -65,6 +77,11 @@ trait PhysicalCard
             "latitude" => 12.65343,
             "longitude" => -134.87536
         ], $this->authentication);
+
+        if (env('METRICAS_RESPONSE', 'data') === null) {
+            return $response;
+        }
+
         $this->validated = (bool) filter_var($response['validated'], FILTER_VALIDATE_BOOLEAN);
 
         return $this;
@@ -76,6 +93,10 @@ trait PhysicalCard
         $response = ApiResource::get('cards/pin/pos', [
             "card_number" => $this->id
         ], $this->authentication);
+
+        if (env('METRICAS_RESPONSE', 'data') === null) {
+            return $response;
+        }
 
         $this->fill($response['card']);
         $this->account = new Account($response['account']);

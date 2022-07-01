@@ -39,7 +39,7 @@ class Cardholder extends MetricasObject
     {
         $response = ApiResource::post('cardholders', $this->toArray(), $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null) {
+        if (getenv('METRICAS_RESPONSE', 'data') === null) {
             return $response;
         }
 
@@ -58,7 +58,7 @@ class Cardholder extends MetricasObject
         $authentication = Authentication::login();
         $response = ApiResource::get('cardholders', $query, $authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null) {
+        if (getenv('METRICAS_RESPONSE', 'data') === null) {
             return $response;
         }
 

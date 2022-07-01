@@ -262,7 +262,7 @@ class Card extends MetricasObject
             "delivery_street" => $delivery_data['delivery_street'],
             "delivery_street_number" => $delivery_data['delivery_street_number'],
             "delivery_township" => $delivery_data['delivery_township'],
-            "delivery_state" => $delivery_data['delivery_postal_code'],
+            "delivery_state" => $delivery_data['delivery_state'],
             "latitude" => 12.65343,
             "longitude" => -134.87536
         ], $authentication);

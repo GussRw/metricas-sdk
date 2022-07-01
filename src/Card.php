@@ -234,7 +234,7 @@ class Card extends MetricasObject
     }
 
 
-    static function makeTransfer(string $origin_card, string $destiny_card, float $amount): Operation|array
+    public static function makeTransfer(string $origin_card, string $destiny_card, float $amount): Operation|array
     {
         $authentication = Authentication::login();
 

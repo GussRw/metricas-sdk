@@ -252,4 +252,27 @@ class Card extends MetricasObject
 
         return new Operation($response['operation']);
     }
+
+    public static function createPhysicalCard(string $card_number, array $delivery_data): Card|array
+    {
+        $authentication = Authentication::login();
+
+        $response = ApiResource::put('cards/virtual', [
+            "card_number" => Client::encryptForPOST($card_number),
+            "delivery_street" => $delivery_data['delivery_street'],
+            "delivery_street_number" => $delivery_data['delivery_street_number'],
+            "delivery_township" => $delivery_data['delivery_township'],
+            "delivery_state" => $delivery_data['delivery_postal_code'],
+            "latitude" => 12.65343,
+            "longitude" => -134.87536
+        ], $authentication);
+
+        if (ApiResource::returnOriginalResponse()) {
+            return $response;
+        }
+
+        $card = new Card($response['card']);
+        $card->account = new Account($response['account']);
+        return $card;
+    }
 }

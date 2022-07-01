@@ -238,7 +238,7 @@ class Card extends MetricasObject
     {
         $authentication = Authentication::login();
 
-        $response = ApiResource::post('cards/withdrawal', [
+        $response = ApiResource::post('cards/transfer', [
             "origin_card" => Client::encryptForPOST($origin_card),
             "destination_card" => Client::encryptForPOST($destiny_card),
             "amount" => $amount,

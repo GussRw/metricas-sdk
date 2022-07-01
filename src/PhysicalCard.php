@@ -16,8 +16,9 @@ trait PhysicalCard
             "longitude" => -134.87536
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null)
+        if (env('METRICAS_RESPONSE', 'data') === null) {
             return $response;
+        }
 
         $this->fill($response['card']);
         $this->account = new Account($response['account']);
@@ -36,8 +37,9 @@ trait PhysicalCard
             "longitude" => -134.87536
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null)
+        if (env('METRICAS_RESPONSE', 'data') === null) {
             return $response;
+        }
 
         $this->fill($response['card']);
         $this->operation = new Operation($response['operation']);
@@ -56,8 +58,9 @@ trait PhysicalCard
             "longitude" => -134.87536
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null)
+        if (env('METRICAS_RESPONSE', 'data') === null) {
             return $response;
+        }
 
         $this->fill($response['card']);
         $this->operation = new Operation($response['operation']);
@@ -75,8 +78,9 @@ trait PhysicalCard
             "longitude" => -134.87536
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null)
+        if (env('METRICAS_RESPONSE', 'data') === null) {
             return $response;
+        }
 
         $this->validated = (bool) filter_var($response['validated'], FILTER_VALIDATE_BOOLEAN);
 
@@ -90,8 +94,9 @@ trait PhysicalCard
             "card_number" => $this->id
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null)
+        if (env('METRICAS_RESPONSE', 'data') === null) {
             return $response;
+        }
 
         $this->fill($response['card']);
         $this->account = new Account($response['account']);

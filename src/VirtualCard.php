@@ -20,8 +20,9 @@ trait VirtualCard
             "observations" => $this->observations,
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null)
+        if (env('METRICAS_RESPONSE', 'data') === null) {
             return $response;
+        }
 
         $this->fill($response["card"]);
         $this->cardholder = new Cardholder($response['cardholder']);

@@ -43,8 +43,9 @@ class Card extends MetricasObject
             'card_number' => $card_id
         ], $authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null)
+        if (env('METRICAS_RESPONSE', 'data') === null) {
             return $response;
+        }
 
         $card = new Card($response['card']);
         $card->account = new Account($response['account']);
@@ -63,8 +64,9 @@ class Card extends MetricasObject
         ], $this->authentication);
 
 
-        if (env('METRICAS_RESPONSE', 'data') === null)
+        if (env('METRICAS_RESPONSE', 'data') === null) {
             return $response;
+        }
 
         $this->fill($response['card']);
         $this->account = new Account($response['account']);
@@ -81,8 +83,9 @@ class Card extends MetricasObject
             "longitude" => -134.87536
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null)
+        if (env('METRICAS_RESPONSE', 'data') === null) {
             return $response;
+        }
 
         $this->fill($response['card']);
         $this->account = new Account($response['account']);
@@ -97,8 +100,9 @@ class Card extends MetricasObject
             "movements" => var_export($with_movements, 1)
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null)
+        if (env('METRICAS_RESPONSE', 'data') === null) {
             return $response;
+        }
 
         $this->fill($response['card']);
         $this->available = $response['available'] ?? null;
@@ -115,8 +119,9 @@ class Card extends MetricasObject
             "authentication_info" => $authentication_info
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null)
+        if (env('METRICAS_RESPONSE', 'data') === null) {
             return $response;
+        }
 
 
         $this->validated = $response['validated'];
@@ -133,8 +138,9 @@ class Card extends MetricasObject
             "longitude" => -134.87536
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null)
+        if (env('METRICAS_RESPONSE', 'data') === null) {
             return $response;
+        }
 
         $this->fill($response['card']);
         $this->operation = new Operation($response['operation']);
@@ -153,8 +159,9 @@ class Card extends MetricasObject
             "longitude" => -134.87536
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null)
+        if (env('METRICAS_RESPONSE', 'data') === null) {
             return $response;
+        }
 
         $this->fill($response['card']);
         $this->operation = new Operation($response['operation']);
@@ -173,8 +180,9 @@ class Card extends MetricasObject
             "longitude" => -134.87536
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null)
+        if (env('METRICAS_RESPONSE', 'data') === null) {
             return $response;
+        }
 
         $this->fill($response['card']);
         $this->operation = new Operation($response['operation']);
@@ -194,8 +202,9 @@ class Card extends MetricasObject
             "longitude" => -134.87536
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null)
+        if (env('METRICAS_RESPONSE', 'data') === null) {
             return $response;
+        }
 
         $this->fill($response['card']);
         $this->operation = new Operation($response['operation']);
@@ -213,8 +222,9 @@ class Card extends MetricasObject
             "end_date" => $end_date,
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null)
+        if (env('METRICAS_RESPONSE', 'data') === null) {
             return $response;
+        }
 
         $this->fill($response['card']);
         $this->account = new Account($response['account']);

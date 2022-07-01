@@ -232,4 +232,24 @@ class Card extends MetricasObject
 
         return $this;
     }
+
+
+    public static function makeTransfer(string $origin_card, string $destiny_card, float $amount): Operation|array
+    {
+        $authentication = Authentication::login();
+
+        $response = ApiResource::post('cards/withdrawal', [
+            "origin_card" => Client::encryptForPOST($origin_card),
+            "destination_card" => Client::encryptForPOST($destiny_card),
+            "amount" => $amount,
+            "latitude" => 12.65343,
+            "longitude" => -134.87536
+        ], $authentication);
+
+        if (ApiResource::returnOriginalResponse()) {
+            return $response;
+        }
+
+        return new Operation($response['operation']);
+    }
 }

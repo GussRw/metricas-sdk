@@ -43,7 +43,7 @@ class Card extends MetricasObject
             'card_number' => $card_id
         ], $authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null) {
+        if (getenv('METRICAS_RESPONSE', 'data') === null) {
             return $response;
         }
 
@@ -64,7 +64,7 @@ class Card extends MetricasObject
         ], $this->authentication);
 
 
-        if (env('METRICAS_RESPONSE', 'data') === null) {
+        if (getenv('METRICAS_RESPONSE', 'data') === null) {
             return $response;
         }
 
@@ -83,7 +83,7 @@ class Card extends MetricasObject
             "longitude" => -134.87536
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null) {
+        if (getenv('METRICAS_RESPONSE', 'data') === null) {
             return $response;
         }
 
@@ -100,7 +100,7 @@ class Card extends MetricasObject
             "movements" => var_export($with_movements, 1)
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null) {
+        if (getenv('METRICAS_RESPONSE', 'data') === null) {
             return $response;
         }
 
@@ -119,7 +119,7 @@ class Card extends MetricasObject
             "authentication_info" => $authentication_info
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null) {
+        if (getenv('METRICAS_RESPONSE', 'data') === null) {
             return $response;
         }
 
@@ -138,7 +138,7 @@ class Card extends MetricasObject
             "longitude" => -134.87536
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null) {
+        if (getenv('METRICAS_RESPONSE', 'data') === null) {
             return $response;
         }
 
@@ -159,7 +159,7 @@ class Card extends MetricasObject
             "longitude" => -134.87536
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null) {
+        if (getenv('METRICAS_RESPONSE', 'data') === null) {
             return $response;
         }
 
@@ -180,7 +180,7 @@ class Card extends MetricasObject
             "longitude" => -134.87536
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null) {
+        if (getenv('METRICAS_RESPONSE', 'data') === null) {
             return $response;
         }
 
@@ -202,7 +202,7 @@ class Card extends MetricasObject
             "longitude" => -134.87536
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null) {
+        if (getenv('METRICAS_RESPONSE', 'data') === null) {
             return $response;
         }
 
@@ -222,7 +222,7 @@ class Card extends MetricasObject
             "end_date" => $end_date,
         ], $this->authentication);
 
-        if (env('METRICAS_RESPONSE', 'data') === null) {
+        if (getenv('METRICAS_RESPONSE', 'data') === null) {
             return $response;
         }
 

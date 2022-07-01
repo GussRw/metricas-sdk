@@ -66,7 +66,6 @@ class ApiResource
             ]
         );
         return $apiResource->processResponse($response);
-
     }
 
     public static function get($uri, $query, $authentication)
@@ -88,7 +87,8 @@ class ApiResource
         return $apiResource->processResponse($response);
     }
 
-    private function processResponse($response){
+    private function processResponse($response)
+    {
         $response = json_decode($response->getBody()->getContents(), true);
 
         if (env('METRICAS_RESPONSE', 'data') == 'data' && isset($response[env('METRICAS_RESPONSE', 'data')])) {
@@ -96,6 +96,5 @@ class ApiResource
         } else {
             return $response;
         }
-
     }
 }

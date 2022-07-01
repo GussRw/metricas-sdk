@@ -16,7 +16,7 @@ trait PhysicalCard
             "longitude" => -134.87536
         ], $this->authentication);
 
-        if (getenv('METRICAS_RESPONSE', 'data') === null) {
+        if (ApiResource::returnOriginalResponse()) {
             return $response;
         }
 
@@ -37,7 +37,7 @@ trait PhysicalCard
             "longitude" => -134.87536
         ], $this->authentication);
 
-        if (getenv('METRICAS_RESPONSE', 'data') === null) {
+        if (ApiResource::returnOriginalResponse()) {
             return $response;
         }
 
@@ -58,7 +58,7 @@ trait PhysicalCard
             "longitude" => -134.87536
         ], $this->authentication);
 
-        if (getenv('METRICAS_RESPONSE', 'data') === null) {
+        if (ApiResource::returnOriginalResponse()) {
             return $response;
         }
 
@@ -78,7 +78,7 @@ trait PhysicalCard
             "longitude" => -134.87536
         ], $this->authentication);
 
-        if (getenv('METRICAS_RESPONSE', 'data') === null) {
+        if (ApiResource::returnOriginalResponse()) {
             return $response;
         }
 
@@ -94,7 +94,7 @@ trait PhysicalCard
             "card_number" => $this->id
         ], $this->authentication);
 
-        if (getenv('METRICAS_RESPONSE', 'data') === null) {
+        if (ApiResource::returnOriginalResponse()) {
             return $response;
         }
 

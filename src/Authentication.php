@@ -37,7 +37,7 @@ class Authentication extends MetricasObject
                 ]
             );
 
-            if (getenv('METRICAS_RESPONSE', 'data') === null) {
+            if (ApiResource::returnOriginalResponse()) {
                 $authentication->fill($response["data"]["client"]);
             } else {
                 $authentication->fill($response["client"]);

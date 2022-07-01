@@ -20,7 +20,7 @@ trait VirtualCard
             "observations" => $this->observations,
         ], $this->authentication);
 
-        if (getenv('METRICAS_RESPONSE', 'data') === null) {
+        if (ApiResource::returnOriginalResponse()) {
             return $response;
         }
 

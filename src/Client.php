@@ -15,7 +15,7 @@ class Client extends MetricasObject
         $response = ApiResource::get('clients/api_key/public_key', [], $authentication);
 
 
-        if (getenv('METRICAS_RESPONSE', 'data') === null) {
+        if (ApiResource::returnOriginalResponse()) {
             return $response['data']['system']['public_key'];
         }
 
@@ -30,7 +30,7 @@ class Client extends MetricasObject
             "public_key" => $public_key
         ], $authentication);
 
-        if (getenv('METRICAS_RESPONSE', 'data') === null) {
+        if (ApiResource::returnOriginalResponse()) {
             return $response;
         }
 

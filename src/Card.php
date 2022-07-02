@@ -299,5 +299,4 @@ class Card extends MetricasObject
         $card->account = new Account($response['account']);
         return $card;
     }
-
 }

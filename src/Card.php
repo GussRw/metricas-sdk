@@ -26,6 +26,9 @@ class Card extends MetricasObject
     public array $movements = [];
     public bool $validated = false;
     public string $pin;
+    public string $cvc;
+    public string $exp_year;
+    public string $exp_month;
     public Operation $operation;
     public Account $account;
     public Cardholder $cardholder;
@@ -276,4 +279,25 @@ class Card extends MetricasObject
         $card->account = new Account($response['account']);
         return $card;
     }
+
+    public static function createVirtualCardCVC(string $card_number, string $pin): Card|array
+    {
+        $authentication = Authentication::login();
+
+        $response = ApiResource::get('cards/virtual/cvc', [
+            "card_number" => Client::encryptForURL($card_number),
+            "pin" => Client::encryptForURL($pin),
+            "latitude" => 12.65343,
+            "longitude" => -134.87536
+        ], $authentication);
+
+        if (ApiResource::returnOriginalResponse()) {
+            return $response;
+        }
+
+        $card = new Card($response['card']);
+        $card->account = new Account($response['account']);
+        return $card;
+    }
+
 }

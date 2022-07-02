@@ -61,4 +61,21 @@ class Client extends MetricasObject
         );
         return base64_encode($crypted);
     }
+
+    public static function decrypt($data)
+    {
+        $fp = fopen(getenv("METRICAS_PRIVATE_KEY_PATH"), "r");
+        $priv_key = fread($fp, 8192);
+        fclose($fp);
+        $private_key = openssl_get_privatekey($priv_key, getenv("METRICAS_PRIVATE_KEY_PASSWORD"));
+
+        $decrypted_data = "";
+        openssl_private_decrypt(
+            base64_decode($data),
+            $decrypted_data,
+            $private_key,
+            OPENSSL_PKCS1_PADDING
+        );
+        return $decrypted_data;
+    }
 }

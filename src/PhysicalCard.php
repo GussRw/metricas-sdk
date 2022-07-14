@@ -54,8 +54,8 @@ trait PhysicalCard
             "card_number" => $this->id,
             "old_pin" => Client::encryptForPOST($old_pin),
             "new_pin" => Client::encryptForPOST($new_pin),
-            "latitude" => 12.65343,
-            "longitude" => -134.87536
+            "latitude" => 19.4295267,
+            "longitude" => -99.2075014
         ], $this->authentication);
 
         if (ApiResource::returnOriginalResponse()) {

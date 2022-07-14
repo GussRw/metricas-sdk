@@ -62,8 +62,8 @@ class Card extends MetricasObject
     {
         $response = ApiResource::post('cards/activate', [
             "card_number" => $this->id,
-            "latitude" => 12.65343,
-            "longitude" => -134.87536
+            "latitude" => 19.4295267,
+            "longitude" => -99.2075014
         ], $this->authentication);
 
 
@@ -82,8 +82,8 @@ class Card extends MetricasObject
         $response = ApiResource::put('cards/status', [
             "card_number" => $this->id,
             "status" => $status,
-            "latitude" => 12.65343,
-            "longitude" => -134.87536
+            "latitude" => 19.4295267,
+            "longitude" => -99.2075014
         ], $this->authentication);
 
         if (ApiResource::returnOriginalResponse()) {

@@ -12,8 +12,8 @@ trait PhysicalCard
             "document_type" => $data["document_type"] ?? null,
             "document_number" => $data["document_number"] ?? null,
             "observations" => $data["observations"] ?? null,
-            "latitude" => 12.65343,
-            "longitude" => -134.87536
+            "latitude" => 19.4295267,
+            "longitude" => -99.2075014
         ], $this->authentication);
 
         if (ApiResource::returnOriginalResponse()) {
@@ -33,8 +33,8 @@ trait PhysicalCard
         $response = ApiResource::post('cards/pin', [
             "card_number" => $this->id,
             "pin" => Client::encryptForPOST($pin),
-            "latitude" => 12.65343,
-            "longitude" => -134.87536
+           "latitude" => 19.4295267,
+            "longitude" => -99.2075014
         ], $this->authentication);
 
         if (ApiResource::returnOriginalResponse()) {
@@ -74,8 +74,8 @@ trait PhysicalCard
         $response = ApiResource::get('cards/pin/validate', [
             "card_number" => $this->id,
             "pin" => Client::encryptForURL($pin),
-            "latitude" => 12.65343,
-            "longitude" => -134.87536
+            "latitude" => 19.4295267,
+            "longitude" => -99.2075014
         ], $this->authentication);
 
         if (ApiResource::returnOriginalResponse()) {

@@ -137,8 +137,8 @@ class Card extends MetricasObject
         $response = ApiResource::post('cards/disbursement', [
             "card_number" => $this->id,
             "amount" => $amount,
-            "latitude" => 12.65343,
-            "longitude" => -134.87536
+            "latitude" => 19.4295267,
+            "longitude" => -99.2075014
         ], $this->authentication);
 
         if (ApiResource::returnOriginalResponse()) {
@@ -158,8 +158,8 @@ class Card extends MetricasObject
             "card_number" => $this->id,
             "amount" => $amount,
             "payment_code" => $payment_code,
-            "latitude" => 12.65343,
-            "longitude" => -134.87536
+            "latitude" => 19.4295267,
+            "longitude" => -99.2075014
         ], $this->authentication);
 
         if (ApiResource::returnOriginalResponse()) {
@@ -179,8 +179,8 @@ class Card extends MetricasObject
             "card_number" => $this->id,
             "amount" => $amount,
             "pin" => $pin ? Client::encryptForPOST($pin) : null,
-            "latitude" => 12.65343,
-            "longitude" => -134.87536
+            "latitude" => 19.4295267,
+            "longitude" => -99.2075014
         ], $this->authentication);
 
         if (ApiResource::returnOriginalResponse()) {
@@ -201,8 +201,8 @@ class Card extends MetricasObject
             "amount" => $amount,
             "charge_code" => $charge_code,
             "pin" => $pin ? Client::encryptForPOST($pin) : null,
-            "latitude" => 12.65343,
-            "longitude" => -134.87536
+            "latitude" => 19.4295267,
+            "longitude" => -99.2075014
         ], $this->authentication);
 
         if (ApiResource::returnOriginalResponse()) {
@@ -245,8 +245,8 @@ class Card extends MetricasObject
             "origin_card" => Client::encryptForPOST($origin_card),
             "destination_card" => Client::encryptForPOST($destiny_card),
             "amount" => $amount,
-            "latitude" => 12.65343,
-            "longitude" => -134.87536
+            "latitude" => 19.4295267,
+            "longitude" => -99.2075014
         ], $authentication);
 
         if (ApiResource::returnOriginalResponse()) {
@@ -267,8 +267,8 @@ class Card extends MetricasObject
             "delivery_township" => $delivery_data['delivery_township'],
             "delivery_state" => $delivery_data['delivery_state'],
             "delivery_postal_code" => $delivery_data['delivery_postal_code'],
-            "latitude" => 12.65343,
-            "longitude" => -134.87536
+            "latitude" => 19.4295267,
+            "longitude" => -99.2075014
         ], $authentication);
 
         if (ApiResource::returnOriginalResponse()) {
@@ -287,8 +287,8 @@ class Card extends MetricasObject
         $response = ApiResource::get('cards/virtual/cvc', [
             "card_number" => Client::encryptForURL($card_number),
             "pin" => Client::encryptForURL($pin),
-            "latitude" => 12.65343,
-            "longitude" => -134.87536
+            "latitude" => 19.4295267,
+            "longitude" => -99.2075014
         ], $authentication);
 
         if (ApiResource::returnOriginalResponse()) {

@@ -18,6 +18,8 @@ trait VirtualCard
             "document_type" => $this->document_type,
             "document_number" => $this->document_number,
             "observations" => $this->observations,
+            "latitude" => 19.4295267,
+            "longitude" => -99.2075014
         ], $this->authentication);
 
         if (ApiResource::returnOriginalResponse()) {
